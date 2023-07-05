@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.forms import CheckboxSelectMultiple
 from django.db import models
+from django import forms
+
+
 from .models import Make, Color, Images, Features, Transmission, Model, Condition, Fuel_type, States, City, Car
 
 
@@ -54,11 +57,27 @@ class CityAdmin(admin.ModelAdmin):
     pass
 
 
-class CarAdmin(admin.ModelAdmin):
+class CarForm(forms.ModelForm):
+    class Meta:
+        model = Car
+        fields = '__all__'
 
-    formfield_overrides = {
-        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
-    }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        instance = kwargs.get('instance')
+        if instance:
+            self.fields['car_images'].queryset = Images.objects.filter(
+                car=instance)
+
+
+class CarAdmin(admin.ModelAdmin):
+    form = CarForm
+    filter_horizontal = ('car_feature',)
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == "car_feature":
+            kwargs["widget"] = CheckboxSelectMultiple()
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
 
 
 admin.site.register(Car, CarAdmin)

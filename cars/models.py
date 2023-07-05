@@ -9,18 +9,18 @@ class Make(models.Model):
         return self.car_make
 
 
+class Images(models.Model):
+    car_image = models.ImageField(upload_to='car_images/')
+
+    def __str__(self):
+        return str(self.car_image)
+
+
 class Color(models.Model):
     car_color = models.CharField(max_length=55)
 
     def __str__(self):
         return self.car_color
-
-
-class Images(models.Model):
-    car_image = models.ImageField()
-
-    def __str__(self):
-        return str(self.car_image)
 
 
 class Features(models.Model):
@@ -104,10 +104,10 @@ class Car(models.Model):
     vin_no = models.CharField(max_length=100)
     milage = models.IntegerField()
     no_of_owners = models.CharField(max_length=100)
-    car_images = models.ManyToManyField(Images)
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default='available')
     is_feature = models.BooleanField(default=False)
+    car_images = models.ManyToManyField('Images', blank=True)
     created_date = models.DateTimeField(default=datetime.now, blank=True)
     car_description = models.TextField()
     car_feature = models.ManyToManyField(Features)
