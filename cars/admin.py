@@ -62,12 +62,12 @@ class CarForm(forms.ModelForm):
         model = Car
         fields = '__all__'
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        instance = kwargs.get('instance')
-        if instance:
-            self.fields['car_images'].queryset = Images.objects.filter(
-                car=instance)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     instance = kwargs.get('instance')
+    #     if instance:
+    #         self.fields['car_images'].queryset = Images.objects.filter(
+    #             car=instance)
 
 
 class CarAdmin(admin.ModelAdmin):
