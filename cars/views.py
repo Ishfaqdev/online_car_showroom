@@ -7,6 +7,10 @@ def home(request):
     return render(request, 'cars/home.html')
 
 
+def car_detail(request):
+    return render(request, 'cars/car-details.html')
+
+
 def about(request):
     return render(request, 'cars/about.html')
 
