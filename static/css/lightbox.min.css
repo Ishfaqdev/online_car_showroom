@@ -24,9 +24,8 @@
 
 .lg-actions .lg-next, .lg-actions .lg-prev {
     background-color: rgba(0, 0, 0, .45);
-    background: #fff;
     border-radius: 2px;
-    color: #000;
+    color: #999;
     cursor: pointer;
     display: block;
     font-size: 22px;
@@ -45,7 +44,7 @@
 }
 
 .lg-actions .lg-next:hover, .lg-actions .lg-prev:hover {
-    color: #000;
+    color: #FFF
 }
 
 .lg-actions .lg-next {
@@ -201,17 +200,13 @@
 
 .lg-sub-html h4 {
     margin: 0;
-    font-size: 18px;
-    color: #fff;
-    font-weight: 400;
-    opacity: 0.9;
+    font-size: 13px;
+    font-weight: 700
 }
 
 .lg-sub-html p {
-    font-size: 14px;
-    margin: 5px 0 0;
-    color: #fff;
-    opacity: 0.9;
+    font-size: 12px;
+    margin: 5px 0 0
 }
 
 #lg-counter {
@@ -289,8 +284,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     cursor: -moz-grab;
     cursor: -o-grab;
     cursor: -ms-grab;
-    cursor: grab;
-    width: 80px!important;
+    cursor: grab
 }
 
 .lg-outer .lg-thumb-outer.lg-grabbing .lg-thumb-item {
@@ -314,9 +308,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
 .lg-outer .lg-thumb {
     padding: 10px 0;
+    height: 100%;
     margin-bottom: -5px;
-    max-width: 430px;
-    margin: 0 auto;
+    margin:0 auto;
+    max-width: 600px;
 }
 
 .lg-outer .lg-thumb-item {
@@ -324,10 +319,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     float: left;
     overflow: hidden;
     height: 100%;
+    width: 20%;
     border: 2px solid #FFF;
-    border: 2px solid #000;
     border-radius: 0;
-    margin-bottom: 5px
+    margin:0 2.5px 5px!important;
 }
 
 @media (min-width: 1025px) {
@@ -339,7 +334,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .lg-outer .lg-thumb-item.active, .lg-outer .lg-thumb-item:hover {
-    border-color: #fff;
+    border-color: #a90707
 }
 
 .lg-outer .lg-thumb-item img {
@@ -434,15 +429,15 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .lg-outer .lg-has-vimeo .lg-video-play {
-    
+    background: url(../img/vimeo-play.png) no-repeat
 }
 
 .lg-outer .lg-has-vimeo:hover .lg-video-play {
-    
+    background: url(../img/vimeo-play.png) 0 -58px no-repeat
 }
 
 .lg-outer .lg-has-html5 .lg-video-play {
-    
+    background: url(../img/video-play.png) no-repeat;
     height: 64px;
     margin-left: -32px;
     margin-top: -32px;
@@ -455,11 +450,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .lg-outer .lg-has-youtube .lg-video-play {
-    
+    background: url(../img/youtube-play.png) no-repeat
 }
 
 .lg-outer .lg-has-youtube:hover .lg-video-play {
-    
+    background: url(../img/youtube-play.png) 0 -60px no-repeat
 }
 
 .lg-outer .lg-video-object {
@@ -910,7 +905,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .lg-outer .lg-item {
-    
+    background: url(../img/loading.gif) center center no-repeat;
     display: none !important
 }
 
@@ -1072,4 +1067,18 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     -moz-transition: left 1s cubic-bezier(0, 0, .25, 1) 0s, opacity .1s ease 0s;
     -o-transition: left 1s cubic-bezier(0, 0, .25, 1) 0s, opacity .1s ease 0s;
     transition: left 1s cubic-bezier(0, 0, .25, 1) 0s, opacity .1s ease 0s
+}
+
+
+@media (max-width: 992px) {
+    .lg-outer .lg-thumb-item{
+        width: 60px!important;
+        height: 40px!important;
+    }
+
+    .lg-outer .lg-thumb {
+        padding: 10px 5px;
+        margin: 0 auto;
+        max-width: 335px;
+    }
 }

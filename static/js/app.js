@@ -24,11 +24,9 @@ $(function () {
         }
     });
 
-
     // Made the left sidebar's min-height to window's height
     var winHeight = $(window).height();
     $('.dashboard-nav').css('min-height', winHeight);
-
 
     // Magnify activation
     $('.portfolio-item').magnificPopup({
@@ -81,7 +79,6 @@ $(function () {
         }
     });
 
-
     // Header shrink while page scroll
     adjustHeader();
     doSticky();
@@ -91,6 +88,183 @@ $(function () {
         doSticky();
         placedDashboard();
     });
+
+    // Comon slick strat
+    $('.slick').slick({
+        dots: false,
+        infinite: true,
+        touchThreshold : 100,
+        speed: 300,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        centerMode: true,
+        nextArrow: '<button class="slick-next"><i class="fas fa-chevron-right"></i></button>',
+        prevArrow: '<button class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+    });
+
+    // Partners strat
+    $('.custom-slider').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: false
+                }
+            },
+            {
+                breakpoint: 900,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: false
+                }
+            },
+            {
+                breakpoint: 550,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: false
+                }
+            }
+        ]
+    });
+
+    //product-slider-box
+    $('.slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-nav'
+    });
+    $('.slider-nav').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        vertical:true,
+        asNavFor: '.slider-for',
+        dots: false,
+        focusOnSelect: true,
+        verticalSwiping:true
+    });
+
+
+    // Cardetailsslider-2 strat
+    $('.slider-fors').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-navs'
+    });
+    $('.slider-navs').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        asNavFor: '.slider-fors',
+        dots: true,
+        focusOnSelect: true
+    });
+
+    $('a[data-slide]').click(function(e) {
+        e.preventDefault();
+        var slideno = $(this).data('slide');
+        $('.slider-nav').slick('slickGoTo', slideno - 1);
+    });
+
+    //featured-slider
+    $('.slider').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    });
+
+    //slide-container
+    (function() {
+        var slideContainer = $('.slide-container');
+        slideContainer.slick({
+            arrows: false,
+            initialSlide:0,
+            centerMode: true,
+            centerPadding: '40px',
+            slidesToShow: 4,
+            swipeToSlide:true,
+            responsive: [
+                {
+                    breakpoint: 1224,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 1000,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 900,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    })();
+
+    if($(document).find('.slider-container').length > 0) {
+        const sliderContainer = document.querySelector('.slider-container')
+        const slideRight = document.querySelector('.right-slide')
+        const slideLeft = document.querySelector('.left-slide')
+        const upButton = document.querySelector('.up-button')
+        const downButton = document.querySelector('.down-button')
+        const slidesLength = slideRight.querySelectorAll('div').length
+
+        let activeSlideIndex = 0
+
+        slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`
+
+        upButton.addEventListener('click', () => changeSlide('up'))
+        downButton.addEventListener('click', () => changeSlide('down'))
+
+        const changeSlide = (direction) => {
+            const sliderHeight = sliderContainer.clientHeight
+            if(direction === 'up') {
+                activeSlideIndex++
+                if(activeSlideIndex > slidesLength - 1) {
+                    activeSlideIndex = 0
+                }
+            } else if(direction === 'down') {
+                activeSlideIndex--
+                if(activeSlideIndex < 0) {
+                    activeSlideIndex = slidesLength - 1
+                }
+            }
+
+            slideRight.style.transform = `translateY(-${activeSlideIndex * sliderHeight}px)`
+            slideLeft.style.transform = `translateY(${activeSlideIndex * sliderHeight}px)`
+        }
+    }
 
     // Header shrink while page resize
     $(window).on('resize', function () {
@@ -120,7 +294,7 @@ $(function () {
                 }
             }
         } else {
-            $('.company-logo img').attr('src', 'img/logos/black-logo.png');
+            $('.company-logo img').attr('src', 'static/img/logos/black-logo.png');
         }
     }
 
@@ -140,43 +314,6 @@ $(function () {
         var headerHeight = parseInt($('.main-header').height(), 10);
         $('.dashboard').css('top', headerHeight);
     }
-
-
-    // Banner slider
-    (function ($) {
-        //Function to animate slider captions
-        function doAnimations(elems) {
-            //Cache the animationend event in a variable
-            var animEndEv = 'webkitAnimationEnd animationend';
-            elems.each(function () {
-                var $this = $(this),
-                    $animationType = $this.data('animation');
-                $this.addClass($animationType).one(animEndEv, function () {
-                    $this.removeClass($animationType);
-                });
-            });
-        }
-
-        //Variables on page load
-        var $myCarousel = $('#carousel-example-generic')
-        var $firstAnimatingElems = $myCarousel.find('.item:first').find("[data-animation ^= 'animated']");
-        //Initialize carousel
-        $myCarousel.carousel();
-
-        //Animate captions in first slide on page load
-        doAnimations($firstAnimatingElems);
-        //Pause carousel
-        $myCarousel.carousel('pause');
-        //Other slides to be animated on carousel slide event
-        $myCarousel.on('slide.bs.carousel', function (e) {
-            var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
-            doAnimations($animatingElems);
-        });
-        $('#carousel-example-generic').carousel({
-            interval: 3000,
-            pause: "false"
-        });
-    })(jQuery);
 
     // Page scroller initialization.
     $.scrollUp({
@@ -222,7 +359,6 @@ $(function () {
             }
         });
     });
-
 
     // Countdown activation
     $( function() {
@@ -296,11 +432,7 @@ $(function () {
         $('.search-options-btn .fa').toggleClass('fa-chevron-down');
     });
 
-    // Carousel with partner initialization
-    (function () {
-        $('#ourPartners').carousel({interval: 3600});
-    }());
-
+    // Our Partbers toggle
     (function () {
         $('.our-partners .item').each(function () {
             var itemToClone = $(this);
@@ -315,6 +447,7 @@ $(function () {
             }
         });
     }());
+
 
     // Background video playing script
     $(document).ready(function () {
@@ -343,7 +476,6 @@ $(function () {
     var videoHeight = videoWidth * .61;
     $('.sidebar-widget iframe').css('height', videoHeight);
 
-
     // Megamenu activation
     $(".megamenu").on("click", function (e) {
         e.stopPropagation();
@@ -365,7 +497,6 @@ $(function () {
         return false;
     });
 
-
     // Full  Page Search Activation
     $(function () {
         $('a[href="#full-page-search"]').on('click', function(event) {
@@ -380,7 +511,6 @@ $(function () {
             }
         });
     });
-
 
     // Slick Sliders
     $('.slick-carousel').each(function () {
@@ -401,13 +531,10 @@ $(function () {
         });
     });
 
-
     $(".dropdown.btns .dropdown-toggle").on('click', function() {
         $(this).dropdown("toggle");
         return false;
     });
-
-
 
     // Dropzone initialization
     Dropzone.autoDiscover = false;
