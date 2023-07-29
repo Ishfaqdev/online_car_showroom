@@ -568,7 +568,7 @@
 
 /** Main header 3 area start **/
 #main-header-3 {
-  z-index: 999;
+  /* z-index: 999; */
   top: 30px;
   background-color: rgba(12, 12, 12, 0.18);
   box-shadow: none;

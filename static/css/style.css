@@ -8447,7 +8447,7 @@ table {
 }
 
 /** Option panel **/
-.option-panel {
+/* .option-panel {
     z-index: 9999;
     width: 215px;
     position: fixed;
@@ -8546,7 +8546,7 @@ table {
     border-radius: 0;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-}
+} */
 /** Option Panel **/
 
 /** Full page search **/

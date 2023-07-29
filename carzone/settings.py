@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'inquiry',
     'cars',
     'accounts',
-    'django_extensions',
+
 ]
 
 MIDDLEWARE = [
