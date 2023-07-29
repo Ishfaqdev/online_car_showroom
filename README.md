@@ -10,5 +10,9 @@
 | git log                          | View changes                      |
 | git log --summary                | View changes (detailed)           |
 | git log --oneline                | View changes (briefly)            |
-"# ShahAutos" 
-"# ShahAutos" 
+| git branch -M main               | View changes (briefly)            |
+| git push -u origin main          | View changes (briefly)            |
+|                                  |
+
+"# ShahAutos"
+"# ShahAutos"
