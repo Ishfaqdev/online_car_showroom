@@ -18,7 +18,7 @@ def car_detail(request):
     context = {
         'features': features,
     }
-    return render(request, 'cars/car-details.html', context)
+    return render(request, 'cars/cars_detail.html', context)
 
 
 def about(request):

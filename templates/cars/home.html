@@ -1,6 +1,8 @@
 {% extends 'cars/base.html' %}
 {% load static %}
+{% block style %}
 
+{% endblock style %}
 
 {% block content %}
 
@@ -67,7 +69,9 @@
                             <div class="car-thumbnail">
                                 <a href="car-details.html" class="car-img">
                                     <div class="tag-2 bg-active">Featured</div>
-                                    <div class="price-box-2"><sup>$</sup>800<span>/month</span> </div>
+                                    <div class="price-box-2">
+                                        <span>${{ car.car_price}}.00</span> 
+                                    </div>
                                     {% if car.car_images.all %}
                                         <img class="d-block w-100" src="{{ car.car_images.first.car_image.url }}" alt="car">
                                     {% endif %}
@@ -94,35 +98,35 @@
                             </div>
                             <div class="detail">
                                 <h1 class="title">
-                                    <a href="car-details.html">Hyundai Santa</a>
+                                    <a href="car-details.html">{{ car.car_title }}</a>
                                 </h1>
                                 <div class="location">
                                     <a href="car-details.html">
-                                        <i class="flaticon-pin"></i>123 Kathal St. Tampa City,
+                                        <i class="flaticon-pin"></i> {{ car.car_city }}, {{ car.car_states }}
                                     </a>
                                 </div>
                                 <ul class="facilities-list clearfix">
                                     <li>
-                                        <i class="flaticon-way"></i> 4,000 km
+                                        <i class="flaticon-way"></i> {{ car.miles }} km
                                     </li>
                                     <li>
-                                        <i class="flaticon-manual-transmission"></i> Manual
+                                        <i class="flaticon-manual-transmission"></i> {{ car.car_transmission }}
                                     </li>
                                     <li>
-                                        <i class="flaticon-calendar-1"></i> 2021
+                                        <i class="flaticon-calendar-1"></i> {{ car.car_year }}
                                     </li>
                                     <li>
-                                        <i class="flaticon-fuel"></i> Petrol
+                                        <i class="flaticon-fuel"></i> {{ car.car_fuel_type }}
                                     </li>
                                     <li>
-                                        <i class="flaticon-car"></i> Sport
+                                        <i class="flaticon-car"></i> {{ car.body_style }}
                                     </li>
                                     <li>
-                                        <i class="flaticon-gear"></i> Blue
+                                        <i class="flaticon-gear"></i> {{ car.car_color }}
                                     </li>
                                 </ul>
-                            </div>
-                        </div>                   
+                        </div>
+                    </div>                   
                 </div>
             {% endfor %}
         </div>
