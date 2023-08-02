@@ -1,6 +1,16 @@
 {% extends 'cars/base.html' %}
 {% load static %}
+{% block style %}
+<style>
+    /* Define the outline color for the form fields when focused */
+    #contact_form .form-control:focus {
+        outline: none; /* This removes the default browser focus outline */
+        border-color: red; /* Change this to your desired focused outline color */
+        /* Other styles for the focused form fields... */
+    }
+</style>
 
+{% endblock style %}
 
 {% block content %}
 

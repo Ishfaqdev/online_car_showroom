@@ -5,7 +5,7 @@
   <div class="container">
     <div class="header-inner">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand company-logo logos d-flex w-33 mr-auto" href="index.html">
+        <a class="navbar-brand company-logo logos d-flex w-33 mr-auto" href="{% url 'cars:home' %}">
           <img src="{% static 'img/logos/logo.png' %}" alt="logo" class="logo-photo" />
         </a>
         <button class="navbar-toggler" id="drawer" type="button">
@@ -19,7 +19,7 @@
             <li class="nav-item dropdown active">
               <a
                 class="nav-link dropdown-toggle"
-                href="#"
+                href="{% url 'cars:home' %}"
                 id="navbarDropdownMenuLink"
                 data-toggle="dropdown"
                 aria-haspopup="true"
@@ -37,18 +37,18 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Car Listing
+                Cars
               </a>
             </li>
           
             <li class="nav-item dropdown">
-              <a class="nav-link" href="contact.html">Services</a>
+              <a class="nav-link" href="{% url 'cars:services' %}">Services</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="contact.html">About Us</a>
+              <a class="nav-link" href="{% url 'cars:about' %}">About Us</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="{% url 'cars:contact' %}">Contact</a>
             </li>
             <li class="nav-item dropdown">
               <a href="login.html" class="nav-link h-icon">

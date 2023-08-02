@@ -12,11 +12,10 @@ def home(request):
     return render(request, 'cars/home.html', context)
 
 
-def car_detail(request):
-    features = Features.objects.all()
-
+def car_detail(request, car_id):
+    car_detail = Car.objects.get(pk=car_id)
     context = {
-        'features': features,
+        'car_detail': car_detail,
     }
     return render(request, 'cars/cars_detail.html', context)
 

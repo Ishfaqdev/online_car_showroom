@@ -7344,6 +7344,7 @@ input[type=checkbox]:checked + label:before {
     font-size: 24px;
     font-weight: 700;
     margin: 0 0 5px;
+    color: red;
 }
 
 .heading-car-3 .pull-right h3 {
