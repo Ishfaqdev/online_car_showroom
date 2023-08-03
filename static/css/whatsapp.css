@@ -1,7 +1,7 @@
 .btn-whatsapp-pulse {
   /* Set the initial background color to green and icon color to white */
-  background:white ;
-  color:  #25d366;
+  background: white;
+  color: #25d366;
   /* Rest of the styles */
   position: fixed;
   bottom: 20px;
@@ -66,4 +66,11 @@
     padding: 50px;
     opacity: 0;
   }
-  100%
+  /* 100% {
+    padding: 75px;
+  } */
+}
+.slider-photo {
+  max-width: 400px;
+  max-height: 200px;
+}

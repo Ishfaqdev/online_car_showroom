@@ -73,7 +73,7 @@
                                         <span>${{ car.car_price }}.00</span> 
                                     </div>
                                     {% if car.car_images.all %}
-                                        <img class="d-block w-100" src="{{ car.car_images.first.car_image.url }}" alt="car">
+                                        <img class="d-block w-100" src="{{ car.car_images.first.car_image.url }}" alt="car" style="min-height:262px">
                                     {% endif %}
                                 </a>
                                 <div class="carbox-overlap-wrapper">

@@ -108,10 +108,84 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur. placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur.</p>
                     </div>
                     <!-- WhatsApp icon button -->
-                    
-                    <a href="" class="btn-whatsapp-pulse btn-whatsapp-pulse-border">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
+                    <div class="mb-50">
+                        <button class="btn-whatsapp-pulse btn-whatsapp-pulse-border">
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                    </div>
+                    <!-- Inquiry Modal -->
+                    <div class="modal fade" id="inquiryModal" role="dialog">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="contact-dealer modal-header">
+                              <!-- <h5 class="modal-title" id="inquiryModalLabel">Contact Dealer</h5> -->
+                              <img src="img/logos/logo-black-white.png">
+                              <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="#">
+                                  <div class="form-group">
+                                    <label for="name" class="col-form-label">Hello, My Name is</label>
+                                    <div class="row">
+                                      <div class="col">
+                                        <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                                    <div class="form-group">
+                                        <select class="form-control" id="sel1" name="customer_need">
+                                          <option value="I'm interested in this">I'm interested in this</option>
+                                          <option value="I'd like to know your best price for this">I'd like to know your best price for this</option>
+                                          <option value="I'd like to test drive this">I'd like to test drive this</option>
+                                          <option value="I'd like a history report for this">I'd like a history report for this</option>
+                                        </select>
+                                      </div>
+                                  
+                                  <div class="form-group">
+                                    <input type="text" name="car_title" class="form-control" value="LAMBORGHINI HURACÁN." readonly>
+                                  </div>
+                                 
+                                  <div class="form-group">
+                                    <label for="name" class="col-form-label">I live in</label>
+                                    <div class="row">
+                                      <div class="col">
+                                        <input type="text" name="city" class="form-control" placeholder="City" required>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" name="state" class="form-control" placeholder="State" required>
+                                      </div>
+                                    </div>
+                                  </div>
+  
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <div class="col">
+                                          <label for="name" class="col-form-label">You can reach me by email at</label>
+                                        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                                      </div>
+                                      <div class="col">
+                                          <label for="phone" class="col-form-label">or by phone at</label>
+                                        <input type="text" name="phone" placeholder="Phone Number (optional)" class="form-control">
+                                      </div>
+                                    </div>
+                                  </div>
+  
+                                  <div class="form-group">
+                                    <label for="message" class="col-form-label">Add comments</label>
+                                    <textarea name="message" class="form-control" placeholder="Enter your message here (optional)"></textarea>
+                                  </div>
+                                  <hr>
+                                  <input type="submit" value="Send" class="btn btn-block btn-danger">
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     <!-- Car amenities start -->
                     <div class="car-amenities mb-40">
                         <h3 class="heading-2">Specifications</h3>
