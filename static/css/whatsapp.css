@@ -20,6 +20,10 @@
   animation-timing-function: ease-out;
   animation-iteration-count: infinite;
   z-index: 9999;
+
+  /* Remove the box shadow */
+  box-shadow: none !important;
+  border: 5px solid #25d366 !important;
 }
 
 /* Add hover effect */
@@ -49,7 +53,7 @@
   position: absolute;
   border-radius: 50%;
   padding: 25px;
-  border: 5px solid #25d366;
+  border: 5px solid rgba(37, 211, 102, 1); /* Update the border color with fully opaque green */
   opacity: 0.75;
   animation-name: pulse-border;
   animation-duration: 1.5s;
@@ -66,11 +70,67 @@
     padding: 50px;
     opacity: 0;
   }
-  /* 100% {
-    padding: 75px;
-  } */
+  100% {
+  }
+}
+.hide-button {
+  display: none;
 }
 .slider-photo {
   max-width: 400px;
   max-height: 200px;
+}
+
+/* Responsive styles for the modal */
+@media (max-width: 576px) {
+  .modal-dialog {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .modal-dialog {
+    max-width: 75%;
+  }
+}
+
+/* Adjust form elements within the modal for small screens */
+@media (max-width: 576px) {
+  .modal-body .form-group {
+    margin-bottom: 10px;
+  }
+}
+/* Styles for the pop-up message */
+.whatsapp-popup {
+  position: fixed;
+  display: none;
+  background-color: #25d366;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 9999;
+  right: 30px;
+  bottom: 120px;
+}
+
+/* Additional style to hide the pop-up message */
+.hide-popup {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Animation for the pop-up message */
+.show-popup {
+  display: block;
+  animation: fade-in 0.5s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

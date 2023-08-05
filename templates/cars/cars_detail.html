@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block style %}
-
 {% endblock style %}
+
 {% block content %}
 
 <!-- Sub banner start -->
@@ -44,7 +44,7 @@
                             <div class="slider slider-fors">
                                 {% for image in car_detail.car_images.all %}
                                     <div class="slider-slider-for-photo">
-                                        <img src="{{ image.car_image.url }}" class="img-fluid w-100" alt="slider-car">
+                                        <img src="{{ image.car_image.url }}" class="img-fluid w-100" alt="slider-car" style="min-height:550px">
                                     </div>
                                 {% endfor %}
                             </div>
@@ -108,18 +108,20 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur. placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur.</p>
                     </div>
                     <!-- WhatsApp icon button -->
-                    <div class="mb-50">
-                        <button class="btn-whatsapp-pulse btn-whatsapp-pulse-border">
-                            <i class="fab fa-whatsapp"></i>
-                        </button>
+                    <button id="whatsappButton" class="btn-whatsapp-pulse btn-whatsapp-pulse-border hide-button" data-toggle="modal" data-target="#inquiryModal">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    <div id="whatsappPopup" class="whatsapp-popup hide-popup">
+                        Contact via WhatsApp
                     </div>
+                    
                     <!-- Inquiry Modal -->
                     <div class="modal fade" id="inquiryModal" role="dialog">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="contact-dealer modal-header">
                               <!-- <h5 class="modal-title" id="inquiryModalLabel">Contact Dealer</h5> -->
-                              <img src="img/logos/logo-black-white.png">
+                              <img src="{% static 'img/logos/black-logo.png' %}" style="width:80%">
                               <button type="button" class="close" data-dismiss="modal">
                                 <span>&times;</span>
                               </button>
@@ -185,7 +187,7 @@
                             </div>
                           </div>
                         </div>
-                      </div>
+                    </div>
                     <!-- Car amenities start -->
                     <div class="car-amenities mb-40">
                         <h3 class="heading-2">Specifications</h3>
@@ -572,7 +574,63 @@
     </div>
 </div>
 <!-- Car details page end -->
-
-
-
+  <script>
+    // Function to show/hide WhatsApp button based on scroll position
+    function handleScroll() {
+      var whatsappButton = document.getElementById('whatsappButton');
+      if (window.scrollY > 100) {
+        whatsappButton.classList.remove('hide-button');
+      } else {
+        whatsappButton.classList.add('hide-button');
+      }
+    }
+  
+    // Add scroll event listener to call the handleScroll function
+    window.addEventListener('scroll', handleScroll);
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var whatsappButton = $('#whatsappButton');
+      var whatsappPopup = $('#whatsappPopup');
+      var popupVisible = false;
+      var popupTimeout;
+  
+      // Function to show the pop-up message
+      function showPopup() {
+        if (!popupVisible) {
+          whatsappPopup.addClass('show-popup');
+          popupVisible = true;
+          popupTimeout = setTimeout(function() {
+            hidePopup();
+          }, 10000); // Set the delay to 5 seconds (5000 milliseconds)
+        }
+      }
+  
+      // Function to hide the pop-up message
+      function hidePopup() {
+        if (popupVisible) {
+          whatsappPopup.removeClass('show-popup');
+          popupVisible = false;
+          clearTimeout(popupTimeout);
+        }
+      }
+  
+      // Function to handle scroll events
+      function handleScroll() {
+        if ($(window).scrollTop() > 100) {
+          whatsappButton.removeClass('hide-button');
+          showPopup();
+        } else {
+          whatsappButton.addClass('hide-button');
+          hidePopup();
+        }
+      }
+  
+      // Add scroll event listener to call the handleScroll function
+      $(window).scroll(handleScroll);
+    });
+  </script>
+  
+  
 {% endblock content %}
