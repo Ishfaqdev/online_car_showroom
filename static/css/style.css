@@ -1008,16 +1008,19 @@ input[type=checkbox]:checked + label:before {
     max-width: 600px!important;
 }
 
-.banner .carousel-control-next, .carousel-control-prev {
+.banner .carousel-control-next,
+.banner .carousel-control-prev {
     background: #423b3b57;
     width: 40px;
     height: 60px;
     border-radius: 2px;
     top: 50%;
+    transform: translateY(-50%); /* This will center the buttons vertically */
     margin: 0;
 }
 
-.banner .carousel-control-next-icon, .carousel-control-prev-icon {
+.banner .carousel-control-next-icon,
+.banner .carousel-control-prev-icon {
     display: inline-block;
     width: 1.4rem;
     height: 1.4rem;

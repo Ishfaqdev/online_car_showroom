@@ -589,48 +589,49 @@
     window.addEventListener('scroll', handleScroll);
   </script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      var whatsappButton = $('#whatsappButton');
-      var whatsappPopup = $('#whatsappPopup');
-      var popupVisible = false;
-      var popupTimeout;
-  
-      // Function to show the pop-up message
-      function showPopup() {
-        if (!popupVisible) {
-          whatsappPopup.addClass('show-popup');
-          popupVisible = true;
-          popupTimeout = setTimeout(function() {
-            hidePopup();
-          }, 10000); // Set the delay to 5 seconds (5000 milliseconds)
-        }
+<script>
+  $(document).ready(function() {
+    var whatsappButton = $('#whatsappButton');
+    var whatsappPopup = $('#whatsappPopup');
+    var popupVisible = false;
+    var popupTimeout;
+
+    // Function to show the pop-up message
+    function showPopup() {
+      if (!popupVisible) {
+        whatsappPopup.addClass('show-popup');
+        popupVisible = true;
+        clearTimeout(popupTimeout); // Clear the previous timeout (if any)
       }
-  
-      // Function to hide the pop-up message
-      function hidePopup() {
-        if (popupVisible) {
-          whatsappPopup.removeClass('show-popup');
-          popupVisible = false;
-          clearTimeout(popupTimeout);
-        }
+      popupTimeout = setTimeout(function() {
+        hidePopup();
+      }, 5000); // Set the delay to 5 seconds (5000 milliseconds)
+    }
+
+    // Function to hide the pop-up message
+    function hidePopup() {
+      if (popupVisible) {
+        whatsappPopup.removeClass('show-popup');
+        popupVisible = false;
       }
-  
-      // Function to handle scroll events
-      function handleScroll() {
-        if ($(window).scrollTop() > 100) {
-          whatsappButton.removeClass('hide-button');
-          showPopup();
-        } else {
-          whatsappButton.addClass('hide-button');
-          hidePopup();
-        }
+    }
+
+    // Function to handle scroll events
+    function handleScroll() {
+      if ($(window).scrollTop() > 100) {
+        whatsappButton.removeClass('hide-button');
+        showPopup();
+      } else {
+        whatsappButton.addClass('hide-button');
+        hidePopup();
       }
-  
-      // Add scroll event listener to call the handleScroll function
-      $(window).scroll(handleScroll);
-    });
-  </script>
+    }
+
+    // Add scroll event listener to call the handleScroll function
+    $(window).scroll(handleScroll);
+  });
+</script>
+
   
   
 {% endblock content %}
