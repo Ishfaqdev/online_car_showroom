@@ -1,6 +1,42 @@
 {% extends 'cars/base.html' %}
 {% load static %}
 {% block style %}
+<style>
+    .range-slider .ui-widget-header {
+        background-color: #f9f3f3 !important;
+    }
+    .range-slider .ui-slider .ui-slider-handle {
+        border: 2px solid #f9f4f4 !important;
+    }
+    .range-slider .ui-slider .ui-slider-handle {
+        background: #f9f3f3 !important;
+    }
+    .max-value {
+        float: right;
+        width: 60%;
+        text-align: right;
+        margin-right: -8px;
+        font-size: 12px;
+        color: #f9f4f4 !important;
+        font-weight: 600;
+        margin-top: 15px;
+        font-family: "Open Sans", sans-serif;
+    }
+    .min-value {
+        float: left;
+        margin-left: -8px;
+        width: 40%;
+        margin-right: -8px;
+        font-size: 12px;
+        color: #f4ecec !important;
+        font-weight: 600;
+        font-family: "Open Sans", sans-serif;
+        margin-top: 15px;
+    }
+    .btn{
+        background-color: black !important;
+    }
+</style>
 {% endblock style %}
 
 {% block content %}

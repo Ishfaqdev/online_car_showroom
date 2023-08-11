@@ -140,79 +140,6 @@
 </div>
 <!-- Featured car end -->
 
-<!-- Advantages 2 start -->
-<div class="advantages-2 content-area bg-grea-3">
-    <div class="container">
-        <!-- Main title -->
-        <div class="main-title">
-            <h1 class="mb-10">Our <span style="color: red;">Advantages</span></h1>
-            <div class="title-border">
-                <div class="title-border-inner"></div>
-                <div class="title-border-inner"></div>
-                <div class="title-border-inner"></div>
-                <div class="title-border-inner"></div>
-                <div class="title-border-inner"></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="advantages-box-2 df-box">
-                    <div class="icon">
-                        <i class="flaticon-shield"></i>
-                    </div>
-                    <div class="detail">
-                        <h5>
-                            <a href="services.html">Highly  Secured</a>
-                        </h5>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="advantages-box-2 df-box">
-                    <div class="icon">
-                        <i class="flaticon-deal"></i>
-                    </div>
-                    <div class="detail">
-                        <h5>
-                            <a href="services.html">Trusted Agents</a>
-                        </h5>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="advantages-box-2 df-box">
-                    <div class="icon">
-                        <i class="flaticon-money"></i>
-                    </div>
-                    <div class="detail">
-                        <h5>
-                            <a href="services.html">Get an Offer</a>
-                        </h5>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="advantages-box-2 df-box">
-                    <div class="icon">
-                        <i class="flaticon-support-2"></i>
-                    </div>
-                    <div class="detail">
-                        <h5>
-                            <a href="services.html">Free Support</a>
-                        </h5>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Advantages 2 end -->
-
 <!-- Latest offers Start -->
 <div class="latest-offers categories content-area-13">
     <div class="container">
@@ -227,217 +154,78 @@
                 <div class="title-border-inner"></div>
             </div>
         </div>
-        <div class="row row-2">
-            <div class="col-lg-4 col-md-12">
-                <div class="row">
-                    <div class="col-md-6 col-lg-12 col-pad">
-                        <div class="latest-offers-box">
-                            <div class="photo-overflow">
-                                <div class="car-thumbnail-photo">
-                                    <img class="img-fluid w-100" src="{% static 'img/car/car-4.jpg' %}" alt="photo">
+        <div class="row">
+            {% for car in latest_cars %}
+                <div class="col-lg-4 col-md-6">             
+                    <div class="car-box-3">
+                        <div class="car-thumbnail">
+                            <a href="{% url 'cars:car_details' car_id=car.id %}" class="car-img">
+                                <div class="tag-2 bg-active">New</div>
+                                <div class="price-box-2">
+                                    <span>${{ car.car_price }}.00</span> 
                                 </div>
-                            </div>
-                            <div class="new">New</div>
-                            <div class="ling-section">
-                                <div class="lo-text clearfix">
-                                    <h3>
-                                        <a href="car-details.html">Toyota Prius specs</a>
-                                    </h3>
-                                    <h5>$920.00 <span>/monthly</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-12 col-pad">
-                        <div class="latest-offers-box">
-                            <div class="photo-overflow">
-                                <div class="car-thumbnail-photo">
-                                    <img class="img-fluid w-100" src="{% static 'img/car/car-6.jpg' %}" alt="photo">
-                                </div>
-                            </div>
-                            <div class="new">New</div>
-                            <div class="ling-section">
-                                <div class="lo-text clearfix">
-                                    <h3>
-                                        <a href="car-details.html">Audi Q7 2018</a>
-                                    </h3>
-                                    <h5>430.00 <span>/monthly</span></h5>
+                                {% if car.car_images.all %}
+                                    <img class="d-block w-100" src="{{ car.car_images.first.car_image.url }}" alt="car" style="min-height:262px">
+                                {% endif %}
+                            </a>
+                            <div class="carbox-overlap-wrapper">
+                                <div class="overlap-box">
+                                    <div class="overlap-btns-area">
+                                        <div class="car-magnify-gallery">
+                                            {% if car.car_images.exists %}
+                                                <a href="{{ car.car_images.first.car_image.url }}" class="overlap-btn" >
+                                                    <i class="fa fa-expand"></i>
+                                                    <img class="hidden" src="{{ car.car_images.first.car_image.url }}" >
+                                                </a>
+                                            {% endif %}
+                                            {% for image in car.car_images.all %}
+                                                <a href="{{ image.car_image.url }}" >
+                                                    <img class="hidden" src="{{ image.car_image.url }}" >
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="detail">
+                            <h1 class="title">
+                                <a href="{% url 'cars:car_details' car_id=car.id %}">{{ car.car_title }}</a>
+                            </h1>
+                            <div class="location">
+                                <a href="{% url 'cars:car_details' car_id=car.id %}">
+                                    <i class="flaticon-pin"></i> {{ car.car_city }}, {{ car.car_states }}
+                                </a>
+                            </div>
+                            <ul class="facilities-list clearfix">
+                                <li>
+                                    <i class="flaticon-way"></i> {{ car.miles }} km
+                                </li>
+                                <li>
+                                    <i class="flaticon-manual-transmission"></i> {{ car.car_transmission }}
+                                </li>
+                                <li>
+                                    <i class="flaticon-calendar-1"></i> {{ car.car_year }}
+                                </li>
+                                <li>
+                                    <i class="flaticon-fuel"></i> {{ car.car_fuel_type }}
+                                </li>
+                                <li>
+                                    <i class="flaticon-car"></i> {{ car.body_style }}
+                                </li>
+                                <li>
+                                    <i class="flaticon-gear"></i> {{ car.car_color }}
+                                </li>
+                            </ul>
                     </div>
-                </div>
+                </div>                   
             </div>
-            <div class="col-lg-4 col-md-6 col-pad">
-                <div class="latest-offers-box">
-                    <div class="photo-overflow">
-                        <div class="car-thumbnail-photo">
-                            <img class="img-fluid w-100" src="{% static 'img/car/car-11.jpg' %}" alt="photo">
-                        </div>
-                    </div>
-                    <div class="new">New</div>
-                    <div class="ling-section">
-                        <div class="lo-text clearfix">
-                            <h3>
-                                <a href="car-details.html">Audi 2021</a>
-                            </h3>
-                            <h5>740.00 <span>/monthly</span></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="row">
-                    <div class="col-md-12 col-lg-12 col-pad">
-                        <div class="latest-offers-box">
-                            <div class="photo-overflow">
-                                <div class="car-thumbnail-photo">
-                                    <img class="img-fluid w-100" src="{% static 'img/car/car-1.jpg' %}" alt="photo">
-                                </div>
-                            </div>
-                            <div class="new">New</div>
-                            <div class="ling-section">
-                                <div class="lo-text clearfix">
-                                    <h3>
-                                        <a href="car-details.html">Toyota Prius</a>
-                                    </h3>
-                                    <h5>410.00 <span>/monthly</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-12 col-pad">
-                        <div class="latest-offers-box">
-                            <div class="photo-overflow">
-                                <div class="car-thumbnail-photo">
-                                    <img class="img-fluid w-100" src="{% static 'img/car/car-2.jpg' %}" alt="photo">
-                                </div>
-                            </div>
-                            <div class="new">New</div>
-                            <div class="ling-section">
-                                <div class="lo-text clearfix">
-                                    <h3>
-                                        <a href="car-details.html">2020 Ford Mustang</a>
-                                    </h3>
-                                    <h5>920.00 <span>/monthly</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+    </div>
     </div>
 </div>
 <!-- Latest offers end -->
 
-<!-- Our team start -->
-<div class="our-team content-area bg-grea-3">
-    <div class="container">
-        <!-- Main title -->
-        <div class="main-title">
-            <h1 class="mb-10">Our <span style="color: red;">Agent</span></h1>
-            <div class="title-border">
-                <div class="title-border-inner"></div>
-                <div class="title-border-inner"></div>
-                <div class="title-border-inner"></div>
-                <div class="title-border-inner"></div>
-                <div class="title-border-inner"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                <div class="team-3">
-                    <div class="thumb">
-                        <img src="{% static 'img/avatar/avatar-9.jpg' %}" alt="agent" class="img-fluid">
-                        <ul>
-                            <li>
-                                <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="info">
-                        <h5><a href="agent.html">Michelle Nelson</a></h5>
-                        <p>Support Manager</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                <div class="team-3">
-                    <div class="thumb">
-                        <img src="{% static 'img/avatar/avatar-10.jpg' %}" alt="agent" class="img-fluid">
-                        <ul>
-                            <li>
-                                <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="info">
-                        <h5><a href="agent.html">Martin Smith</a></h5>
-                        <p>Web Developer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                <div class="team-3">
-                    <div class="thumb">
-                        <img src="{% static 'img/avatar/avatar-11.jpg' %}" alt="agent" class="img-fluid">
-                        <ul>
-                            <li>
-                                <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="info">
-                        <h5><a href="agent.html">Carolyn Stone</a></h5>
-                        <p>Creative Director</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                <div class="team-3">
-                    <div class="thumb">
-                        <img src="{% static 'img/avatar/avatar-12.jpg' %}" alt="agent" class="img-fluid">
-                        <ul>
-                            <li>
-                                <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="info">
-                        <h5><a href="agent.html">Brandon Miller</a></h5>
-                        <p>Manager</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Our team end -->
 
 
 <!-- Intro section start -->

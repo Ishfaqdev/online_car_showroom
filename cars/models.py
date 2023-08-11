@@ -16,13 +16,6 @@ class Images(models.Model):
         return str(self.car_image)
 
 
-class Color(models.Model):
-    car_color = models.CharField(max_length=55)
-
-    def __str__(self):
-        return self.car_color
-
-
 class Features(models.Model):
     car_features = models.CharField(max_length=100)
 
@@ -35,13 +28,6 @@ class Transmission(models.Model):
 
     def __str__(self):
         return self.car_transmissions
-
-
-class Model(models.Model):
-    car_model = models.CharField(max_length=55)
-
-    def __str__(self):
-        return self.car_model
 
 
 class Condition(models.Model):
@@ -86,8 +72,8 @@ STATUS_CHOICES = (
 class Car(models.Model):
     car_title = models.CharField(max_length=55)
     car_make = models.ForeignKey(Make, on_delete=models.CASCADE)
-    car_color = models.ForeignKey(Color, on_delete=models.CASCADE)
-    car_model = models.ForeignKey(Model, on_delete=models.CASCADE)
+    car_color = models.CharField(max_length=55)
+    car_model = models.CharField(max_length=55)
     car_states = models.ForeignKey(States, on_delete=models.CASCADE)
     car_city = models.ForeignKey(City, on_delete=models.CASCADE)
     car_transmission = models.ForeignKey(
@@ -100,6 +86,7 @@ class Car(models.Model):
     engine = models.CharField(max_length=100)
     miles = models.IntegerField()
     doors = models.IntegerField()
+    gaers = models.IntegerField()
     pessengers = models.IntegerField()
     vin_no = models.CharField(max_length=100)
     milage = models.IntegerField()
