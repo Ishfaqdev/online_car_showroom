@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'inquiry',
     'cars',
     'accounts',
+    'django_extensions',
 
 ]
 
@@ -82,8 +83,8 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
 }
 
 
@@ -145,3 +146,14 @@ GRAPH_MODELS = {
     'all_applications': True,
     'graph_models': True,
 }
+
+# Email Backend Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True  # Use TLS (True for Gmail)
+EMAIL_HOST = 'smtp.gmail.com'  # SMTP server address
+EMAIL_PORT = 587  # SMTP server port
+EMAIL_HOST_USER = 'ishfaq.bcs09@gmail.com'  # Your Gmail email address
+EMAIL_HOST_PASSWORD = 'wtvwubxngchaeplr'  # Your Gmail email password
+
+# Sender Information
+DEFAULT_FROM_EMAIL = 'ishfaq.bcs09@gmail.com'

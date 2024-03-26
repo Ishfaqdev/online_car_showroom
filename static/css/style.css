@@ -3210,7 +3210,7 @@ input[type="checkbox"]:checked + label:before {
 }
 
 .login-1 .form-section img {
-  margin-bottom: 5px;
+  margin-bottom: 50px;
   height: 45px;
 }
 

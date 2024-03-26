@@ -1,0 +1,49 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+{% block style %}
+<style>
+   
+
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<!-- Sub banner start -->
+<div class="sub-banner">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Account Pending</h1>
+            <ul class="breadcrumbs">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Verify</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub Banner end -->
+
+<div class="login-1">
+    <div class="container-fluid">
+        <div class="row login-box">
+            <div class="col-lg-6 bg-color-15 pad-0 none-992 bg-img">
+                <div class="info clearfix">
+                    <h1>Welcome to <a href="index.html">shah autos</a></h1>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type</p>
+                </div>
+            </div>
+            <div class="col-lg-6 align-self-center pad-0 form-section">
+                <div class="form-inner">
+                    <a href="index.html" class="logo">
+                        <img src="{% static 'img/logos/black-logo.png' %}" alt="logo">
+                    </a>
+                    <h3>Email Verification Pending</h3>
+                    <p>Thank you for signing up! A verification email has been sent to your email address.</p>
+                    <p>Please check your inbox and follow the instructions in the email to verify your account.</p>
+                    <p>If you haven't received the email, Please check your email inbox (and spam folder) for the verification email.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

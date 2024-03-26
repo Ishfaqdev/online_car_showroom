@@ -48,7 +48,9 @@
                     <!-- Contact form start -->
                     <div class="contact-form contact-pad">
                         <h3>Send us a Message</h3>
-                        <form id="contact_form" action="https://storage.googleapis.com/theme-vessel-items/checking-sites/cmart-2-html/HTML/main/index.html" method="GET" enctype="multipart/form-data">
+                        <form id="contact_form" action="" method="POST" enctype="multipart/form-data">
+                            {% include 'includes/messages.html' %}
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group name">
