@@ -41,6 +41,7 @@
                             <div class="clearfix"></div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <!-- Cardetailsslider 3 start -->
 <div class="cardetailsslider-3 clearfix mb-30">
     <div class="product-img-slide">
@@ -59,6 +60,29 @@
     </div>
 </div>
 
+=======
+                    <!-- Cardetailsslider 2 start -->
+                    <div class="cardetailsslider-2 mb-40">
+                        <div class="main clearfix">
+                            <div class="slider slider-fors">
+                                {% for image in car_detail.car_images.all %}
+                                    <div class="slider-slider-for-photo">
+                                        <img src="{{ image.car_image.url }}" class="img-fluid w-100" alt="slider-car" style="min-height:550px">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="slider-navs-box">
+                                <div class="slider slider-navs">
+                                    {% for image in car_detail.car_images.all %}
+                                        <div>
+                                            <img src="{{ image.car_image.url }}" class="slider-photo" alt="slider-car" >
+                                        </div>
+                                    {% endfor %}
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> 509e864021f9c7d37fcf1cfbf659e19462d311b2
                     
                     <!-- Advanced search start -->
                     <div class="widget-2 advanced-search bg-grea-2 d-lg-none d-xl-none">
