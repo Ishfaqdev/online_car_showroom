@@ -1,0 +1,86 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+{% block style %}
+{% endblock style %}
+{% block content %}
+
+<!-- Sub banner start -->
+<div class="sub-banner">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Account</h1>
+            <ul class="breadcrumbs">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Login</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub Banner end -->
+
+<!-- Login 1 start -->
+<div class="login-1">
+    <div class="container-fluid">
+        <div class="row login-box">
+            <div class="col-lg-6 bg-color-15 pad-0 none-992 bg-img">
+                <div class="info clearfix">
+                    <h1>Welcome to <a href="index.html">SHAH AUTOS</a></h1>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type</p>
+                </div>
+            </div>
+            <div class="col-lg-6 align-self-center pad-0 form-section">
+                <div class="form-inner">
+                    <a href="index.html" class="logo">
+                        <img src="{% static 'img/logos/black-logo.png' %}" alt="logo">
+                    </a>
+                    <h3>Sign Into Your Account</h3>
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="form-group clearfix">
+                            <input name="username" type="text" value="{{ username }}"class="form-control" placeholder="Username" aria-label="Username" required>
+                        </div>
+                        <div class="form-group clearfix">
+                            <input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" required>
+                        </div>
+                        <div class="checkbox form-group clearfix">
+                            <div class="form-check checkbox-theme">
+                                <input class="form-check-input" type="checkbox" name="remember" value="on" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="forgot-password.html" class="forgot-password">Forgot Password</a>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn-theme btn-md w-100">Login</button>
+                        </div>
+                        <div class="extra-login form-group clearfix">
+                            <span>Or Login With</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <ul class="social-list clearfix">
+                            <li><a href="#" class="facebook-bg">Facebook</a></li>
+                            <li><a href="#" class="twitter-bg">Twitter</a></li>
+                            <li><a href="#" class="google-bg">Google</a></li>
+                        </ul>
+                    </form>
+                    
+
+                    <div class="clearfix"></div>
+                    <p>Don't have an account? <a href="{% url 'accounts:signup' %}" class="thembo"> Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login end -->
+
+{% endblock content %}

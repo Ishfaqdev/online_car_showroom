@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <title>{% block title %}CMART - Car Dealer HTML Template{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    {% block style %}{% endblock style %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- External CSS libraries -->
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-submenu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skin/red.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/leaflet.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/map.css' %}" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}"> 
+    <link type="text/css" rel="stylesheet" href="{% static 'fonts/bootstrap-icons/bootstrap-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/linearicons/style.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/jquery.mCustomScrollbar.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/dropzone.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/lightbox.min.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/jnoty.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/whatsapp.css' %}">
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/initial.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" id="style_sheet" href="{% static 'css/skins/midnight-blue.css' %}">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=OSans:400,300,600,700,800%7CPlayfair+Display:400,700%7CRoboto:100,300,400,400i,500,700">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,300,700">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ie10-viewport-bug-workaround.css' %}">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script  src="js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script  src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script  src="js/html5shiv.min.js"></script>
+    <script  src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="page_loader"></div>
+
+{% comment %} {% include 'includes/topbar.html' %} {% endcomment %}
+
+{% include 'includes/navbar.html' %}
+{% include 'includes/sidenavbar.html' %}
+
+
+{% block content %}
+
+{% endblock content %}
+
+<!-- Full Page Search -->
+<div id="full-page-search">
+  <button type="button" class="close">×</button>
+  <div class="full-page-search-box">
+      <form method="GET" class="search-boxs" action="{% url 'cars:search_cars' %}">
+          <input class="search" type="search" name="keyword" placeholder="Type keyword(s) here" value="{{ keyword }}">
+          <button type="submit" class="btn btn-sm button-theme">Search</button>
+      </form>
+  </div>
+</div>
+
+
+{% include 'includes/footer.html' %}
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script  src="{% static 'js/bootstrap-submenu.js' %}"></script>
+<script  src="{% static 'js/rangeslider.js' %}"></script>
+<script  src="{% static 'js/jquery.mb.YTPlayer.js' %}"></script>
+<script  src="{% static 'js/bootstrap-select.min.js' %}"></script>
+<script  src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<script  src="{% static 'js/jquery.scrollUp.js' %}"></script>
+<script  src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script  src="{% static 'js/leaflet.js' %}"></script>
+<script  src="{% static 'js/leaflet-providers.js' %}"></script>
+<script  src="{% static 'js/leaflet.markercluster.js' %}"></script>
+<script  src="{% static 'js/dropzone.js' %}"></script>
+<script  src="{% static 'js/slick.min.js' %}"></script>
+<script  src="{% static 'js/slick.min.js' %}"></script>
+<script  src="{% static 'js/jquery.filterizr.js' %}"></script>
+<script  src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script  src="{% static 'js/jquery.countdown.js' %}"></script>
+<script  src="{% static 'js/jquery.mousewheel.min.js' %}"></script>
+<script  src="{% static 'js/lightgallery-all.js' %}"></script>
+<script  src="{% static 'js/jnoty.js' %}"></script>
+<script  src="{% static 'js/maps.js' %}"></script>
+<script  src="{% static 'js/sidebar.js' %}"></script>
+<script  src="{% static 'js/app.js' %}"></script>
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script  src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+<!-- Custom javascript -->
+<script  src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+
+
+
+
+</body>
+
+
+</html>

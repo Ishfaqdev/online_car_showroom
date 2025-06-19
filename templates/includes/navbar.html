@@ -1,0 +1,49 @@
+{% load static %}
+
+<!-- Main header start -->
+<header class="main-header header-fixed sticky-header" id="main-header-3">
+    <div class="container">
+        <div class="header-inner">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand company-logo logos d-flex w-33 mr-auto" href="{% url 'cars:home' %}">
+                    <img src="static/img/logos/logo.png" alt="logo">
+
+                </a>
+                <button class="navbar-toggler" id="drawer" type="button">
+                    <span class="fa fa-bars"></span>
+                </button>
+
+                <!-- Your other HTML code -->
+                <div class="navbar-collapse collapse w-100 justify-content-end" id="navbar">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item {% if request.resolver_match.view_name == 'cars:home' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'cars:home' %}">Home</a>
+                        </li>
+                        <li class="nav-item {% if request.resolver_match.view_name == 'cars:all_cars' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'cars:all_cars' %}">Cars</a>
+                        </li>
+                        <li class="nav-item {% if request.resolver_match.view_name == 'cars:services' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'cars:services' %}">Services</a>
+                        </li>
+                        <li class="nav-item {% if request.resolver_match.view_name == 'cars:about' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'cars:about' %}">About Us</a>
+                        </li>
+                        <li class="nav-item {% if request.resolver_match.view_name == 'accounts:contact' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'accounts:contact' %}">Contact</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="{% url 'accounts:login' %}" class="nav-link h-icon">Login</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#full-page-search" class="nav-link h-icon">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- Main header end -->

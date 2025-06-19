@@ -1,0 +1,250 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+{% block style %}
+<style>
+    .carousel-indicators {
+        justify-content: flex-start;
+        margin-left: 0;
+    }
+</style>
+
+{% endblock style %}
+
+{% block content %}
+
+<!-- Banner start -->
+<div class="banner" id="banner">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner banner-slider-inner">
+            <div class="carousel-item banner-max-height active item-bg">
+                <img class="d-block w-100 h-100" src="{% static 'img/banner/img-3.jpg' %}" alt="banner">
+                <div class="carousel-content banner-info-2 bi-2">
+                    <h1>Welcome to <span style="color: red;"> Shah Autos </span></h1>
+                    <p>We are a leading automobile dealership offering a wide range of high-quality vehicles to our valued customers.</p>
+                    <a href="#" class="btn-6">Get Started Now</a>
+                </div>
+            </div>
+            <div class="carousel-item banner-max-height item-bg">
+                <img class="d-block w-100 h-100" src="{% static 'img/banner/img-5.jpg' %}" alt="banner">
+                <div class="carousel-content banner-info-2 bi-2">
+                    <h1>Find your<span style="color: red;"> Dream </span>Car</h1>
+                    <p>Find your dream car from our extensive collection and drive in style!</p>
+                    <a href="#" class="btn-6">Get Started Now</a>
+                </div>
+            </div>
+            <div class="carousel-item banner-max-height item-bg">
+                <img class="d-block w-100 h-100" src="{% static 'img/banner/img-6.jpg' %}" alt="banner">
+                <div class="carousel-content banner-info-2 bi-2">
+                    <h1>Best place to <span style="color: red;"> Buy </span> car</h1>
+                    <p>Our dedicated team of professionals is committed to providing exceptional customer service, making your car-buying experience smooth and enjoyable.</p>
+                    <a href="#" class="btn-6">Get Started Now</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- Banner end -->
+
+
+<!-- Featured car start -->
+<div class="featured-car content-area">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Featured <span style="color: red;">Cars</span></h1>
+            <div class="title-border">
+                <div class="title-border-inner"></div>
+                <div class="title-border-inner"></div>
+                <div class="title-border-inner"></div>
+                <div class="title-border-inner"></div>
+                <div class="title-border-inner"></div>
+            </div>
+        </div>
+            <div class="row">
+                {% for car in featured_cars %}
+                    <div class="col-lg-4 col-md-6">             
+                        <div class="car-box-3">
+                            <div class="car-thumbnail">
+                                <a href="{% url 'cars:car_details' car_id=car.id %}" class="car-img">
+                                    <div class="tag-2 bg-active">Featured</div>
+                                    <div class="price-box-2">
+                                        <span>${{ car.car_price }}.00</span> 
+                                    </div>
+                                    {% if car.car_images.all %}
+                                        <img class="d-block w-100" src="{{ car.car_images.first.car_image.url }}" alt="car" style="min-height:262px">
+                                    {% endif %}
+                                </a>
+                                <div class="carbox-overlap-wrapper">
+                                    <div class="overlap-box">
+                                        <div class="overlap-btns-area">
+                                            <div class="car-magnify-gallery">
+                                                {% if car.car_images.exists %}
+                                                    <a href="{{ car.car_images.first.car_image.url }}" class="overlap-btn" >
+                                                        <i class="fa fa-expand"></i>
+                                                        <img class="hidden" src="{{ car.car_images.first.car_image.url }}" >
+                                                    </a>
+                                                {% endif %}
+                                                {% for image in car.car_images.all %}
+                                                    <a href="{{ image.car_image.url }}" >
+                                                        <img class="hidden" src="{{ image.car_image.url }}" >
+                                                    </a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="{% url 'cars:car_details' car.id %}">{{ car.car_title }}</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="{% url 'cars:car_details' car.id %}">
+                                        <i class="flaticon-pin"></i> {{ car.car_city }}, {{ car.car_states }}
+                                    </a>
+                                </div>
+                                <ul class="facilities-list clearfix">
+                                    <li>
+                                        <i class="flaticon-way"></i> {{ car.miles }} km
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-manual-transmission"></i> {{ car.car_transmission }}
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-calendar-1"></i> {{ car.car_year }}
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-fuel"></i> {{ car.car_fuel_type }}
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-car"></i> {{ car.body_style }}
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-gear"></i> {{ car.car_color }}
+                                    </li>
+                                </ul>
+                        </div>
+                    </div>                   
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Featured car end -->
+
+<!-- Latest offers Start -->
+<div class="latest-offers categories content-area-13">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title text-center">
+            <h1 class="mb-10">Latest <span style="color: red;">Offers</span></h1>
+            <div class="title-border">
+                <div class="title-border-inner"></div>
+                <div class="title-border-inner"></div>
+                <div class="title-border-inner"></div>
+                <div class="title-border-inner"></div>
+                <div class="title-border-inner"></div>
+            </div>
+        </div>
+        <div class="row">
+            {% for car in latest_cars %}
+                <div class="col-lg-4 col-md-6">             
+                    <div class="car-box-3">
+                        <div class="car-thumbnail">
+                            <a href="{% url 'cars:car_details' car_id=car.id %}" class="car-img">
+                                <div class="tag-2 bg-active">New</div>
+                                <div class="price-box-2">
+                                    <span>${{ car.car_price }}.00</span> 
+                                </div>
+                                {% if car.car_images.all %}
+                                    <img class="d-block w-100" src="{{ car.car_images.first.car_image.url }}" alt="car" style="min-height:262px">
+                                {% endif %}
+                            </a>
+                            <div class="carbox-overlap-wrapper">
+                                <div class="overlap-box">
+                                    <div class="overlap-btns-area">
+                                        <div class="car-magnify-gallery">
+                                            {% if car.car_images.exists %}
+                                                <a href="{{ car.car_images.first.car_image.url }}" class="overlap-btn" >
+                                                    <i class="fa fa-expand"></i>
+                                                    <img class="hidden" src="{{ car.car_images.first.car_image.url }}" >
+                                                </a>
+                                            {% endif %}
+                                            {% for image in car.car_images.all %}
+                                                <a href="{{ image.car_image.url }}" >
+                                                    <img class="hidden" src="{{ image.car_image.url }}" >
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <h1 class="title">
+                                <a href="{% url 'cars:car_details' car_id=car.id %}">{{ car.car_title }}</a>
+                            </h1>
+                            <div class="location">
+                                <a href="{% url 'cars:car_details' car_id=car.id %}">
+                                    <i class="flaticon-pin"></i> {{ car.car_city }}, {{ car.car_states }}
+                                </a>
+                            </div>
+                            <ul class="facilities-list clearfix">
+                                <li>
+                                    <i class="flaticon-way"></i> {{ car.miles }} km
+                                </li>
+                                <li>
+                                    <i class="flaticon-manual-transmission"></i> {{ car.car_transmission }}
+                                </li>
+                                <li>
+                                    <i class="flaticon-calendar-1"></i> {{ car.car_year }}
+                                </li>
+                                <li>
+                                    <i class="flaticon-fuel"></i> {{ car.car_fuel_type }}
+                                </li>
+                                <li>
+                                    <i class="flaticon-car"></i> {{ car.body_style }}
+                                </li>
+                                <li>
+                                    <i class="flaticon-gear"></i> {{ car.car_color }}
+                                </li>
+                            </ul>
+                    </div>
+                </div>                   
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+</div>
+<!-- Latest offers end -->
+
+
+
+<!-- Intro section start -->
+<div class="intro-section">
+    <div class="intro-section-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <div class="intro-text">
+                        <h3>Do You Have Questions ?</h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <a href="contact.html" class="btn btn-md">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Intro section end -->
+
+{% endblock content %}

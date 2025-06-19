@@ -1,0 +1,472 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<!-- Sub banner start -->
+<div class="sub-banner">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>{{car_detail.car_title}}</h1>
+            <ul class="breadcrumbs">
+                <li><a href="index.html">Home /</a></li>
+                <li class="nav-item {% if request.resolver_match.view_name == 'cars:search_cars' %}active{% endif %}" style="color: red;">Car Details</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub Banner end -->
+
+<!-- Car details page start -->
+<div class="car-details-page content-area-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-xs-12">
+                <div class="car-details-section">
+                    <div class="heading-car-3 clearfix">
+                        <div class="pull-left">
+                            <h3>{{car_detail.car_title}}</h3>
+                            <p>
+                                <i class="flaticon-pin"></i> {{ car_detail.car_city }}, {{ car_detail.car_states }}
+                            </p>
+                        </div>
+                        <div class="pull-right">
+                            <h3>${{ car_detail.car_price }}.00</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <!-- Cardetailsslider 3 start -->
+<div class="cardetailsslider-3 clearfix mb-30">
+    <div class="product-img-slide">
+        <div class="slider-for">
+            {% for image in car_detail.car_images.all %}
+                <img src="{{ image.car_image.url }}" class="img-fluid w-100" alt="slider-car">
+            {% endfor %}
+        </div>
+        <div class="slider-nav">
+            {% for image in car_detail.car_images.all %}
+                <div class="thumb-slide">
+                    <img src="{{ image.car_image.url }}" class="img-fluid" alt="small-car">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+                    
+                    <!-- Advanced search start -->
+                    <div class="widget-2 advanced-search bg-grea-2 d-lg-none d-xl-none">
+                        <h3 class="sidebar-title">Refine Your Search</h3>
+                        <ul>
+                            <li>
+                                <span>Make</span>{{ car_detail.car_make }}
+                            </li>
+                            <li>
+                                <span>Model</span>{{ car_detail.car_model }}
+                            </li>
+                            <li>
+                                <span>Body Style</span>{{ car_detail.body_style }}
+                            </li>
+                            <li>
+                                <span>Year</span>{{ car_detail.car_year }}
+                            </li>
+                            <li>
+                                <span>Condition</span>{{ car_detail.car_condition }}
+                            </li>
+                            <li>
+                                <span>Mileage</span>{{ car_detail.miles }} km
+                            </li>
+                            <li>
+                                <span>Transmission</span>{{ car_detail.car_transmission }}
+                            </li>
+                            <li>
+                                <span>Engine</span>{{ car_detail.engine }}
+                            </li>
+                            <li>
+                                <span>No. of Gears:</span>{{ car_detail.gaers }}
+                            </li>
+                            <li>
+                                <span>Location</span>{{ car_detail.car_city }}, {{ car_detail.car_states }}
+                            </li>
+                            <li>
+                                <span>Fuel Type</span>{{ car_detail.car_fuel_type }}
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Description start -->
+                    <div class="Description mb-50">
+                        <h3 class="heading-2">Description</h3>
+                        <p>{{ car_detail.car_description }}</p>
+                    </div>
+                    <!-- WhatsApp icon button -->
+                    <button id="whatsappButton" class="btn-whatsapp-pulse btn-whatsapp-pulse-border hide-button"  data-toggle="modal" data-target="#inquiryModal">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    <div id="whatsappPopup" class="whatsapp-popup hide-popup">
+                        Contact via WhatsApp
+                    </div>
+                    
+                    <!-- Inquiry Modal -->
+                    <div class="modal fade" id="inquiryModal" role="dialog">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="contact-dealer modal-header">
+                              <!-- <h5 class="modal-title" id="inquiryModalLabel">Contact Dealer</h5> -->
+                              <img src="{% static 'img/logos/black-logo.png' %}" style="width:80%">
+                              <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="inquiryForm" action="{% url 'inquiry:inquiry' %}"method = "POST">
+                                    {% csrf_token %}
+                                    {% if user.is_authenticated %}
+                                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                                    {% else %}
+                                    <input type="hidden" name="user_id" value="0">
+                                    {% endif %}
+                                    <input type="hidden" name="car_id" value="{{ single_car.id }}">
+                                    <div class="form-group">
+                                        <label for="name" class="col-form-label">Hello, My Name is</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" name="first_name" class="form-control" placeholder="First Name"
+                                                    {% if user.is_authenticated %}value="{{user.first_name}}" {% endif %} required>                  
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" name="last_name" class="form-control"
+                                                    placeholder="Last Name" 
+                                                    {% if user.is_authenticated %}value="{{user.last_name}}" {% endif %}  required
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control" id="sel1" name="customer_need">
+                                            <option value="I'm interested in this">I'm interested in this</option>
+                                            <option value="I'd like to know your best price for this">I'd like to know your
+                                                best price for this</option>
+                                            <option value="I'd like to test drive this">I'd like to test drive this</option>
+                                            <option value="I'd like a history report for this">I'd like a history report for
+                                                this</option>
+                                        </select>
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <input type="text" name="car_title" class="form-control"
+                                            value="{{car_detail.car_title}}" readonly>
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <label for="name" class="col-form-label">I live in</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" name="city" class="form-control" placeholder="City"
+                                                required>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" name="state" class="form-control" placeholder="State"
+                                                    required>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="name" class="col-form-label">You can reach me by email
+                                                    at</label>
+                                                <input type="email" name="email" class="form-control"
+                                                    placeholder="Email Address"
+                                                    {% if user.is_authenticated %}value="{{user.email}}"  {% endif %}  required>
+                                            </div>
+                                            <div class="col">
+                                                <label for="phone" class="col-form-label">or by phone at</label>
+                                                <input type="text" name="phone" placeholder="Phone Number (optional)"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <label for="message" class="col-form-label">Add comments</label>
+                                        <textarea name="message" class="form-control"
+                                            placeholder="Enter your message here (optional)"></textarea>
+                                    </div>
+                                    <hr>
+                                    <a type="submit" class="btn btn-block btn-success whatsapp-button text-white" onclick="sendInquiryViaWhatsApp()">
+                                        <i class="fab fa-whatsapp"></i> Send
+                                    </a>
+                
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="features-info mb-40">
+                        <h3 class="heading-2">Features</h3>
+                        <div class="row">
+                            {% for feature in features %}
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-check" style="color:red"></i>   {{ feature.car_features }}
+                                    </li>
+                                </ul>
+                            </div>
+                            {% endfor %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="heading-2">Related Cars</h3>
+                                </div>
+                                {% for related_car in related_cars %}
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="car-box">
+                                        <div class="photo-thumbnail">
+                                            <div class="photo">
+                                                {% if related_car.car_images.all %}
+                                                <img class="d-block w-100" style="width: 100%; height: auto;" src="{{ related_car.car_images.first.car_image.url}}" alt="car">
+                                                {% endif %}
+                                                <a href="{% url 'cars:car_details' related_car.pk %}">
+                                                    <span class="blog-one__plus"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="detail">
+                                            <div class="top">
+                                                <h1>
+                                                    <a href="{% url 'cars:car_details' related_car.pk %}">{{ related_car.car_make }} {{ related_car.car_model }}</a>
+                                                    <span>${{ related_car.car_price }}</span>
+                                                </h1>
+                                                <p>Build year: <span>{{ related_car.car_year }}</span></p>
+                                            </div>
+                                            <div class="footer">
+                                                <ul class="facilities-list clearfix">
+                                                    <li>
+                                                        <i class="flaticon-way"></i> {{ related_car.miles }} km
+                                                    </li>
+                                                    <li>
+                                                        <i class="flaticon-manual-transmission"></i> {{ related_car.car_transmission }}
+                                                    </li>
+                                                    <li>
+                                                        <i class="flaticon-calendar-1"></i> {{ related_car.car_year }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar-right">
+                    <!-- Advanced search start -->
+                    <div class="widget advanced-search d-none d-xl-block d-lg-block">
+                        <h3 class="sidebar-title">Refine Your Search</h3>
+                        <ul>
+                            <li>
+                                <span>Make</span>{{ car_detail.car_make }}
+                            </li>
+                            <li>
+                                <span>Model</span>{{ car_detail.car_model }}
+                            </li>
+                            <li>
+                                <span>Body Style</span>{{ car_detail.body_style }}
+                            </li>
+                            <li>
+                                <span>Year</span>{{ car_detail.car_year }}
+                            </li>
+                            <li>
+                                <span>Condition</span>{{ car_detail.car_condition }}
+                            </li>
+                            <li>
+                                <span>Mileage</span>{{ car_detail.milage }} mi
+                            </li>
+                            <li>
+                                <span>Transmission</span>{{ car_detail.car_transmission }}
+                            </li>
+                            <li>
+                                <span>Engine</span>{{ car_detail.engine }}
+                            </li>
+                            <li>
+                                <span>No. of Gears:</span>{{ car_detail.gaers }}
+                            </li>
+                            <li>
+                                <span>Location</span>{{ car_detail.car_city }}, {{ car_detail.car_states }}
+                            </li>
+                            <li>
+                                <span>Fuel Type</span>{{ car_detail.car_fuel_type }}
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Recent posts start -->
+                    <div class="widget recent-posts">
+                        <h3 class="sidebar-title">Recent Posts</h3>
+                        <div class="d-flex mb-4 recent-posts-box">
+                            <a href="car-details.html">
+                                <img class="flex-shrink-0 me-3" src="img/car/small-car-3.jpg" alt="small-car">
+                            </a>
+                            <div class="detail align-self-center">
+                                <h5>
+                                    <a href="car-details.html">Bentley Continental GT</a>
+                                </h5>
+                                <div class="listing-post-meta">
+                                    $345,00 | <a href="#"><i class="fa fa-calendar"></i> Jan 12, 2021</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4 recent-posts-box">
+                            <a href="car-details.html">
+                                <img class="flex-shrink-0 me-3" src="img/car/small-car-1.jpg" alt="small-car">
+                            </a>
+                            <div class="detail align-self-center">
+                                <h5>
+                                    <a href="car-details.html">Fiat Punto Red</a>
+                                </h5>
+                                <div class="listing-post-meta">
+                                    $345,00 | <a href="#"><i class="fa fa-calendar"></i> Aug 24, 2021</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex recent-posts-box">
+                            <a href="car-details.html">
+                                <img class="flex-shrink-0 me-3" src="img/car/small-car-2.jpg" alt="small-car">
+                            </a>
+                            <div class="detail align-self-center">
+                                <h5>
+                                    <a href="car-details.html">Nissan Micra Gen5</a>
+                                </h5>
+                                <div class="listing-post-meta">
+                                    $345,00 | <a href="#"><i class="fa fa-calendar"></i> Sep 24, 2021</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Social sinks start -->
+                    <div class="widget social-links">
+                        <h3 class="sidebar-title">Social Links</h3>
+                        <ul class="social-list clearfix">
+                            <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#" class="pinterest-bg"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Car details page end -->
+  <script>
+    // Function to show/hide WhatsApp button based on scroll position
+    function handleScroll() {
+      var whatsappButton = document.getElementById('whatsappButton');
+      if (window.scrollY > 100) {
+        whatsappButton.classList.remove('hide-button');
+      } else {
+        whatsappButton.classList.add('hide-button');
+      }
+    }
+  
+    // Add scroll event listener to call the handleScroll function
+    window.addEventListener('scroll', handleScroll);
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var whatsappButton = $('#whatsappButton');
+    var whatsappPopup = $('#whatsappPopup');
+    var popupVisible = false;
+    var popupTimeout;
+
+    // Function to show the pop-up message
+    function showPopup() {
+      if (!popupVisible) {
+        whatsappPopup.addClass('show-popup');
+        popupVisible = true;
+        clearTimeout(popupTimeout); // Clear the previous timeout (if any)
+      }
+      popupTimeout = setTimeout(function() {
+        hidePopup();
+      }, 5000); // Set the delay to 5 seconds (5000 milliseconds)
+    }
+
+    // Function to hide the pop-up message
+    function hidePopup() {
+      if (popupVisible) {
+        whatsappPopup.removeClass('show-popup');
+        popupVisible = false;
+      }
+    }
+
+    // Function to handle scroll events
+    function handleScroll() {
+      if ($(window).scrollTop() > 100) {
+        whatsappButton.removeClass('hide-button');
+        showPopup();
+      } else {
+        whatsappButton.addClass('hide-button');
+        hidePopup();
+      }
+    }
+
+    // Add scroll event listener to call the handleScroll function
+    $(window).scroll(handleScroll);
+  });
+</script>
+
+<script>
+    function sendInquiryViaWhatsApp() {
+        // Get the form data
+        {% if user.is_authenticated %}
+        var form = document.getElementById('inquiryForm');
+        var formData = new FormData(form);
+        var carTitle = formData.get('car_title');
+        var customerNeed = formData.get('customer_need');
+        var city = formData.get('city');
+        var state = formData.get('state');
+        var email = formData.get('email');
+        var phone = formData.get('phone');
+        var message = formData.get('message');
+    
+        // Construct the WhatsApp message with bold formatting
+        var whatsappMessage = `
+        Hello, My Name is *${formData.get('first_name')} ${formData.get('last_name')}*.
+        I live in *${city}*, *${state}*.
+        I'm interested in *${carTitle}*. 
+        *${customerNeed}*.
+        You can reach me by email at *${email}*.
+        
+        ${message}`;    
+        // Encode the message for the WhatsApp URL
+        var encodedMessage = encodeURIComponent(whatsappMessage);
+    
+        // Specify the WhatsApp phone number (replace with your own number)
+        var whatsappNumber = '+923441949399'; // Replace with your WhatsApp number
+    
+        // Generate the WhatsApp URL
+        var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+        // Open WhatsApp with the pre-filled message in a new tab
+        window.open(whatsappURL, '_blank');
+        {% else %}
+        window.location.href = "{% url 'accounts:login' %}";
+    {% endif %}
+    }
+</script> 
+  
+{% endblock content %}

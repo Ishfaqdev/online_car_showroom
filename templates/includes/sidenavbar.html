@@ -1,0 +1,41 @@
+{% load static %}
+<!-- Sidenav start -->
+<nav id="sidebar" class="nav-sidebar">
+    <!-- Close btn-->
+    <div id="dismiss">
+        <i class="fa fa-close"></i>
+    </div>
+    <div class="sidebar-inner">
+        <div class="sidebar-logo">
+            <img src="{% static 'img/logos/black-logo.png' %}" alt="sidebarlogo" style="width:80%">
+        </div>
+        <div class="sidebar-navigation">
+            <ul class="menu-list">
+                <li class="nav-item {% if request.resolver_match.view_name == 'cars:home' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'cars:home' %}">Home</a>
+                </li>
+                <li class="nav-item {% if request.resolver_match.view_name == 'cars:all_cars' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'cars:all_cars' %}">Cars</a>
+                </li>
+                <li class="nav-item {% if request.resolver_match.view_name == 'cars:services' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'cars:services' %}">Services</a>
+                </li>
+                <li class="nav-item {% if request.resolver_match.view_name == 'cars:about' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'cars:about' %}">About Us</a>
+                </li>
+                <li class="nav-item {% if request.resolver_match.view_name == 'accounts:contact' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'accounts:contact' %}">Contact</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="login.html" class="nav-link h-icon">Login</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#full-page-search" class="nav-link h-icon">
+                        <i class="fa fa-search"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Sidenav end -->
