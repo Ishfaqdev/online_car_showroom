@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+import re
 
 
 class SignupForm(UserCreationForm):
@@ -32,6 +33,9 @@ class SignupForm(UserCreationForm):
         username = self.cleaned_data['username']
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError("This username is already taken.")
+        if username.isdigit():
+            raise forms.ValidationError(
+                "Username must not be entirely numeric.")
         return username
 
     def clean_email(self):
@@ -47,6 +51,21 @@ class SignupForm(UserCreationForm):
 
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords do not match.")
+
+        # Custom password validation
+        if len(password1) < 8:
+            raise forms.ValidationError(
+                "Password must be at least 8 characters long.")
+        if not re.search(r'[A-Za-z]', password1):
+            raise forms.ValidationError(
+                "Password must contain at least one letter.")
+        if not re.search(r'\d', password1):
+            raise forms.ValidationError(
+                "Password must contain at least one digit.")
+        if not re.search(r'[^A-Za-z0-9]', password1):
+            raise forms.ValidationError(
+                "Password must contain at least one special character.")
+
         return password2
 
 
